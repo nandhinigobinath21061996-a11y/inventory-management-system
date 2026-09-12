@@ -1,0 +1,716 @@
+/* =====================================
+   FEATURES SECTION
+===================================== */
+
+.features-section {
+  width: 100%;
+  background: #FFF8F2;
+  padding: 75px 0 90px;
+}
+
+
+/* =====================================
+   HEADER
+===================================== */
+
+.features-header {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.features-header h2 {
+  margin: 0;
+  color: #5A4032;
+  font-size: 36px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.features-header p {
+  margin: 12px 0 0;
+  color: #6B5A50;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+
+/* =====================================
+   CARDS CONTAINER
+===================================== */
+
+.features-container {
+  width: 80%;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px;
+}
+
+
+/* =====================================
+   FEATURE CARD
+===================================== */
+
+.feature-card {
+  min-height: 205px;
+  padding: 22px 30px 25px;
+
+  background: #FFFDFC;
+
+  border: 1px solid #F0DED2;
+  border-radius: 8px;
+
+  text-align: center;
+
+  box-shadow: 0 4px 15px rgba(90, 64, 50, 0.06);
+
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(90, 64, 50, 0.10);
+}
+
+
+/* =====================================
+   ICON
+===================================== */
+
+.feature-icon {
+  width: 46px;
+  height: 46px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #F1E9D8;
+
+  color: #A87800;
+
+  font-size: 20px;
+}
+
+.feature-icon svg {
+  color: #A87800;
+}
+
+
+/* =====================================
+   CARD TITLE
+===================================== */
+
+.feature-card h3 {
+  margin: 0 0 9px;
+
+  color: #5A4032;
+
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+
+/* =====================================
+   CARD DESCRIPTION
+===================================== */
+
+.feature-card p {
+  max-width: 250px;
+
+  margin: 0 auto;
+
+  color: #6B5A50;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* =====================================
+   FEATURE HIGHLIGHT
+===================================== */
+
+.feature-highlight {
+  width: 80%;
+  max-width: 1100px;
+
+  margin: 90px auto 0;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 80px;
+
+  align-items: center;
+}
+
+
+/* =====================================
+   HIGHLIGHT IMAGE
+===================================== */
+
+.highlight-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight-image img {
+  width: 420px;
+  height: 300px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  box-shadow: 0 12px 30px rgba(90, 64, 50, 0.10);
+}
+
+
+/* =====================================
+   RIGHT CONTENT
+===================================== */
+
+.highlight-content {
+  padding-right: 20px;
+}
+
+.highlight-content h2 {
+  margin: 0 0 20px;
+
+  color: #5A4032;
+
+  font-size: 36px;
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+.highlight-content p {
+  max-width: 520px;
+
+  margin: 0 0 25px;
+
+  color: #6B5A50;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.highlight-btn {
+  padding: 12px 28px;
+
+  border: none;
+  border-radius: 6px;
+
+  background: #B58A1A;
+
+  color: #FFFFFF;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.highlight-btn:hover {
+  background: #8F6B12;
+  transform: translateY(-2px);
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+  .features-container {
+    width: 88%;
+    gap: 25px;
+  }
+
+  .features-header h2 {
+    font-size: 32px;
+  }
+
+  .feature-card {
+    padding: 22px 20px;
+  }
+
+  .feature-card h3 {
+    font-size: 19px;
+  }
+
+  .feature-highlight {
+    width: 88%;
+    gap: 45px;
+  }
+
+  .highlight-content h2 {
+    font-size: 30px;
+  }
+
+  .highlight-image img {
+    width: 100%;
+    max-width: 380px;
+    height: 280px;
+  }
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+
+  .features-section {
+    padding: 60px 0;
+  }
+
+  .features-container {
+    grid-template-columns: 1fr;
+
+    width: 85%;
+    max-width: 430px;
+
+    gap: 20px;
+  }
+
+  .features-header {
+    margin-bottom: 35px;
+  }
+
+  .features-header h2 {
+    font-size: 28px;
+  }
+
+  .feature-card {
+    min-height: auto;
+    padding: 25px;
+  }
+
+  .feature-highlight {
+    width: 85%;
+
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    margin-top: 65px;
+
+    text-align: center;
+  }
+
+  .highlight-image img {
+    width: 100%;
+    max-width: 420px;
+    height: 260px;
+  }
+
+  .highlight-content {
+    padding-right: 0;
+  }
+
+  .highlight-content h2 {
+    font-size: 28px;
+  }
+
+  .highlight-content p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* =====================================
+   INVENTORY STATISTICS
+===================================== */
+
+.inventory-stats {
+  width: 80%;
+  max-width: 1100px;
+
+  margin: 100px auto 0;
+
+  padding: 55px 60px;
+
+  background: #F4F6F8;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1.2fr;
+
+  gap: 70px;
+
+  align-items: center;
+}
+
+
+/* =====================================
+   INTRO
+===================================== */
+
+.stats-intro h2 {
+  margin: 0 0 15px;
+
+  color: #5A4032;
+
+  font-size: 34px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+}
+
+.stats-intro h2 span {
+  color: #A87800;
+}
+
+.stats-intro p {
+  max-width: 420px;
+
+  margin: 0;
+
+  color: #6B5A50;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================
+   STATS GRID
+===================================== */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  column-gap: 50px;
+
+  row-gap: 35px;
+}
+
+
+/* =====================================
+   STAT
+===================================== */
+
+.inventory-stat {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+
+/* =====================================
+   STAT ICON
+===================================== */
+
+.inventory-stat-icon {
+  width: 44px;
+
+  height: 44px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: transparent;
+
+  color: #A87800;
+
+  font-size: 25px;
+}
+
+
+/* =====================================
+   STAT NUMBER
+===================================== */
+
+.inventory-stat strong {
+  display: block;
+
+  color: #5A4032;
+
+  font-size: 22px;
+
+  line-height: 1.2;
+
+  font-weight: 700;
+}
+
+
+/* =====================================
+   STAT LABEL
+===================================== */
+
+.inventory-stat span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #6B5A50;
+
+  font-size: 12px;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+  .inventory-stats {
+    width: 88%;
+
+    padding: 45px;
+
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .stats-intro {
+    text-align: center;
+  }
+
+  .stats-intro p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+
+  .inventory-stats {
+    width: 85%;
+
+    padding: 35px 25px;
+
+    margin-top: 65px;
+  }
+
+  .stats-intro h2 {
+    font-size: 28px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+  }
+
+  .inventory-stat {
+    justify-content: center;
+  }
+}
+
+/* =====================================
+   INVENTORY TRACKING SECTION
+===================================== */
+
+.inventory-tracking {
+  width: 80%;
+  max-width: 1100px;
+
+  margin: 100px auto 0;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 80px;
+
+  align-items: center;
+}
+
+
+/* =====================================
+   LEFT CONTENT
+===================================== */
+
+.tracking-content {
+  padding-left: 10px;
+}
+
+.tracking-content h2 {
+  margin: 0 0 20px;
+
+  color: #5A4032;
+
+  font-size: 36px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+.tracking-content p {
+  max-width: 520px;
+
+  margin: 0 0 25px;
+
+  color: #6B5A50;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* =====================================
+   BUTTON
+===================================== */
+
+.tracking-btn {
+  padding: 12px 28px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: #B58A1A;
+
+  color: #FFFFFF;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.tracking-btn:hover {
+  background: #8F6B12;
+
+  transform: translateY(-2px);
+}
+
+
+/* =====================================
+   RIGHT IMAGE
+===================================== */
+
+.tracking-image {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.tracking-image img {
+  width: 420px;
+
+  height: 300px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  box-shadow: 0 12px 30px rgba(90, 64, 50, 0.10);
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+  .inventory-tracking {
+    width: 88%;
+
+    gap: 45px;
+  }
+
+  .tracking-content h2 {
+    font-size: 30px;
+  }
+
+  .tracking-image img {
+    width: 100%;
+
+    max-width: 380px;
+
+    height: 280px;
+  }
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+
+  .inventory-tracking {
+    width: 85%;
+
+    grid-template-columns: 1fr;
+
+    gap: 35px;
+
+    margin-top: 65px;
+
+    text-align: center;
+  }
+
+  .tracking-content {
+    padding-left: 0;
+  }
+
+  .tracking-content h2 {
+    font-size: 28px;
+  }
+
+  .tracking-content p {
+    margin-left: auto;
+
+    margin-right: auto;
+  }
+
+  .tracking-image img {
+    width: 100%;
+
+    max-width: 420px;
+
+    height: 260px;
+  }
+}

@@ -1,0 +1,721 @@
+/* =========================================================
+   REPORTS PAGE
+========================================================= */
+
+.reports-page {
+  display: flex;
+
+  min-height: 100vh;
+
+  background: #f8fbfd;
+
+  color: #333;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.reports-layout {
+  margin-left: 250px;
+
+  width: calc(100% - 250px);
+
+  min-height: 100vh;
+
+  background: #f8fbfd;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.reports-main {
+  padding: 24px 30px 30px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.reports-page-header {
+  background: #ffffff;
+
+  border:
+    1px solid #d7dce0;
+
+  border-radius: 7px;
+
+  padding: 18px 20px;
+
+  margin-bottom: 16px;
+
+  box-sizing: border-box;
+}
+
+
+.reports-page-header h1 {
+  margin: 0;
+
+  color: #30363b;
+
+  font-size: 23px;
+
+  line-height: 1.2;
+
+  font-weight: 600;
+}
+
+
+.reports-page-header p {
+  margin: 5px 0 0;
+
+  color: #858d93;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.reports-summary {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 16px;
+
+  margin-bottom: 18px;
+}
+
+
+.report-summary-card {
+  min-height: 100px;
+
+  background: #ffffff;
+
+  border:
+    1px solid #d7dce0;
+
+  border-radius: 7px;
+
+  padding: 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+.report-summary-icon {
+  width: 44px;
+
+  height: 44px;
+
+  border-radius: 7px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  font-size: 18px;
+}
+
+
+.sales-icon {
+  background: #eaf4fb;
+
+  color: #1685bd;
+}
+
+
+.purchase-icon {
+  background: #e8f7f1;
+
+  color: #18a673;
+}
+
+
+.stock-icon {
+  background: #eef0f3;
+
+  color: #2f3b4f;
+}
+
+
+.low-stock-icon {
+  background: #fff0f1;
+
+  color: #df515c;
+}
+
+
+.report-summary-card span {
+  display: block;
+
+  color: #899197;
+
+  font-size: 11px;
+
+  margin-bottom: 5px;
+}
+
+
+.report-summary-card strong {
+  display: block;
+
+  color: #30363b;
+
+  font-size: 22px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   MAIN ANALYTICS GRID
+========================================================= */
+
+.reports-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 18px;
+
+  margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   RECENT GRID
+========================================================= */
+
+.recent-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 18px;
+}
+
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.report-card {
+  background: #ffffff;
+
+  border:
+    1px solid #d7dce0;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.report-card-header {
+  min-height: 60px;
+
+  padding: 0 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom:
+    1px solid #e5e8ea;
+
+  box-sizing: border-box;
+}
+
+
+.report-card-header h2 {
+  margin: 0;
+
+  color: #343b40;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+
+.report-card-header span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #8a9298;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   TOP SELLING LIST
+========================================================= */
+
+.top-selling-list {
+  padding: 6px 18px 10px;
+}
+
+
+.top-selling-row {
+  min-height: 65px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  border-bottom:
+    1px solid #edf0f1;
+}
+
+
+.top-selling-row:last-child {
+  border-bottom: none;
+}
+
+
+.rank {
+  width: 22px;
+
+  color: #92999f;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+
+.report-product-image {
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 6px;
+
+  background: #f5f7f8;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+}
+
+
+.report-product-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+
+.report-product-image svg {
+  color: #b7bec3;
+
+  font-size: 20px;
+}
+
+
+.top-selling-info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.top-selling-info strong {
+  display: block;
+
+  color: #343b40;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.top-selling-info span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #899197;
+
+  font-size: 11px;
+}
+
+
+.sold-quantity {
+  color: #1685bd;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   STOCK STATUS
+========================================================= */
+
+.stock-status-list {
+  padding: 4px 18px 10px;
+}
+
+
+.stock-status-row {
+  min-height: 65px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border-bottom:
+    1px solid #edf0f1;
+}
+
+
+.stock-status-row:last-child {
+  border-bottom: none;
+}
+
+
+.stock-product {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  min-width: 0;
+}
+
+
+.stock-product > div:last-child {
+  min-width: 0;
+}
+
+
+.stock-product strong {
+  display: block;
+
+  color: #343b40;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.stock-product span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #899197;
+
+  font-size: 11px;
+}
+
+
+.stock-value {
+  text-align: right;
+
+  flex-shrink: 0;
+}
+
+
+.stock-value strong {
+  display: block;
+
+  color: #df515c;
+
+  font-size: 16px;
+}
+
+
+.stock-value span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #df515c;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   HEALTHY STOCK
+========================================================= */
+
+.healthy-stock {
+  min-height: 180px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 20px;
+}
+
+
+.healthy-stock strong {
+  color: #18a673;
+
+  font-size: 14px;
+}
+
+
+.healthy-stock span {
+  margin-top: 5px;
+
+  color: #899197;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   RECENT LIST
+========================================================= */
+
+.recent-list {
+  padding: 4px 18px 10px;
+}
+
+
+.recent-row {
+  min-height: 62px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border-bottom:
+    1px solid #edf0f1;
+}
+
+
+.recent-row:last-child {
+  border-bottom: none;
+}
+
+
+.recent-row > div:first-child {
+  min-width: 0;
+}
+
+
+.recent-row strong {
+  display: block;
+
+  color: #343b40;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.recent-row span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #899197;
+
+  font-size: 11px;
+}
+
+
+.recent-right {
+  text-align: right;
+
+  flex-shrink: 0;
+}
+
+
+.recent-right .sale-amount {
+  color: #1685bd;
+}
+
+
+.recent-right .purchase-amount {
+  color: #18a673;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.report-empty {
+  min-height: 150px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #90989e;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.report-summary-card:hover,
+.report-card:hover {
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .reports-summary {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 950px) {
+
+  .reports-layout {
+    margin-left: 0;
+
+    width: 100%;
+  }
+
+  .reports-grid,
+  .recent-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .reports-main {
+    padding: 18px;
+  }
+
+  .reports-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .reports-page-header h1 {
+    font-size: 21px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .reports-main {
+    padding: 14px;
+  }
+
+  .report-summary-card {
+    min-height: 90px;
+  }
+
+  .report-summary-card strong {
+    font-size: 20px;
+  }
+}

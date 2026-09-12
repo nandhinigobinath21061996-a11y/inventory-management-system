@@ -1,0 +1,188 @@
+/* ===========================
+   REGISTER PAGE
+=========================== */
+
+.register-container{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#F5F7FA;
+    padding:20px;
+}
+
+/* ===========================
+   REGISTER CARD
+=========================== */
+
+.register-card{
+
+    width:100%;
+    max-width:450px;
+
+    background:#FFFFFF;
+
+    padding:40px;
+
+    border-radius:18px;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* ===========================
+   TITLE
+=========================== */
+
+.register-card h2{
+
+    text-align:center;
+
+    color:#2F3B4F;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+}
+
+/* ===========================
+   SUBTITLE
+=========================== */
+
+.register-card p{
+
+    text-align:center;
+
+    color:#6B7280;
+
+    font-size:15px;
+
+    margin-bottom:30px;
+}
+
+/* ===========================
+   FORM
+=========================== */
+
+.register-card form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+/* ===========================
+   INPUT
+=========================== */
+
+.register-card input{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border:1px solid #D1D5DB;
+
+    border-radius:10px;
+
+    font-size:15px;
+
+    transition:all .3s ease;
+
+    box-sizing:border-box;
+}
+
+.register-card input:focus{
+
+    outline:none;
+
+    border-color:#2F3B4F;
+
+    box-shadow:0 0 0 3px rgba(47,59,79,.15);
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.register-card button{
+
+    background:#2F3B4F;
+
+    color:#FFFFFF;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.register-card button:hover{
+
+    background:#1F2937;
+}
+
+/* ===========================
+   LOGIN LINK
+=========================== */
+
+.login-link{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#6B7280;
+}
+
+.login-link a{
+
+    color:#2F3B4F;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.login-link a:hover{
+
+    color:#4F46E5;
+
+    text-decoration:underline;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:576px){
+
+    .register-card{
+
+        padding:30px 25px;
+
+    }
+
+    .register-card h2{
+
+        font-size:26px;
+
+    }
+
+}

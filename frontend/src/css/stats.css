@@ -1,0 +1,168 @@
+/* ===========================
+   STATS SECTION
+=========================== */
+
+.stats-section{
+    padding:90px 0;
+    background:#FFFFFF;
+}
+
+.stats-container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+}
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:40px;
+    color:#2F3B4F;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.section-title p{
+    color:#6B7280;
+    font-size:17px;
+    max-width:650px;
+    margin:auto;
+    line-height:1.7;
+}
+
+/* ===========================
+   STATS GRID
+=========================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:30px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.stat-card{
+
+    background:#F5F7FA;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:18px;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.10);
+}
+
+/* ===========================
+   ICON
+=========================== */
+
+.stat-icon{
+
+    width:72px;
+
+    height:72px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#EEF2F7;
+
+    color:#2F3B4F;
+
+    font-size:30px;
+}
+
+/* ===========================
+   NUMBER
+=========================== */
+
+.stat-card h3{
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#2F3B4F;
+
+    margin-bottom:10px;
+}
+
+/* ===========================
+   TEXT
+=========================== */
+
+.stat-card p{
+
+    color:#6B7280;
+
+    font-size:16px;
+
+    line-height:1.6;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:576px){
+
+    .stats-section{
+        padding:70px 0;
+    }
+
+    .section-title h2{
+        font-size:32px;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stat-card{
+        padding:30px 20px;
+    }
+
+}

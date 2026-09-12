@@ -1,0 +1,537 @@
+/* =====================================
+   TESTIMONIAL SECTION
+===================================== */
+
+.testimonial-section {
+  width: 100%;
+  background: #F4F6F8;
+  padding: 90px 0;
+}
+
+
+/* =====================================
+   CONTAINER
+===================================== */
+
+.testimonial-container {
+  width: 82%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+
+  gap: 85px;
+
+  align-items: center;
+}
+
+
+/* =====================================
+   IMAGE
+===================================== */
+
+.testimonial-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-image img {
+  width: 390px;
+  height: 350px;
+
+  object-fit: cover;
+
+  border-radius: 14px;
+
+  box-shadow: 0 15px 35px rgba(90, 64, 50, 0.12);
+}
+
+
+/* =====================================
+   CONTENT
+===================================== */
+
+.testimonial-content {
+  position: relative;
+}
+
+
+/* =====================================
+   QUOTE
+===================================== */
+
+.quote-mark {
+  color: #B58A1A;
+
+  font-family: Georgia, serif;
+
+  font-size: 76px;
+
+  line-height: 0.6;
+
+  margin-bottom: 25px;
+}
+
+
+/* =====================================
+   HEADING
+===================================== */
+
+.testimonial-content h2 {
+  margin: 0 0 25px;
+
+  color: #5A4032;
+
+  font-size: 38px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* =====================================
+   DESCRIPTION
+===================================== */
+
+.testimonial-text {
+  max-width: 620px;
+
+  margin: 0 0 28px;
+
+  color: #6B5A50;
+
+  font-size: 17px;
+
+  line-height: 1.75;
+}
+
+
+/* =====================================
+   CUSTOMER
+===================================== */
+
+.customer-info {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 30px;
+}
+
+.customer-info strong {
+  color: #B58A1A;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.customer-info span {
+  margin-top: 5px;
+
+  color: #8A7A70;
+
+  font-size: 14px;
+}
+
+
+/* =====================================
+   TRUST FEATURES
+===================================== */
+
+.testimonial-features {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 18px 35px;
+
+  max-width: 600px;
+}
+
+
+/* =====================================
+   FEATURE
+===================================== */
+
+.testimonial-feature {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  color: #5A4032;
+
+  font-size: 15px;
+
+  font-weight: 500;
+}
+
+.testimonial-feature svg {
+  color: #A87800;
+
+  font-size: 18px;
+
+  flex-shrink: 0;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+  .testimonial-container {
+    width: 88%;
+
+    gap: 50px;
+  }
+
+  .testimonial-image img {
+    width: 100%;
+    max-width: 360px;
+    height: 310px;
+  }
+
+  .testimonial-content h2 {
+    font-size: 32px;
+  }
+
+  .testimonial-text {
+    font-size: 16px;
+  }
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+
+  .testimonial-section {
+    padding: 65px 0;
+  }
+
+  .testimonial-container {
+    width: 85%;
+
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+
+    text-align: center;
+  }
+
+  .testimonial-image img {
+    width: 100%;
+
+    max-width: 400px;
+
+    height: 280px;
+  }
+
+  .testimonial-content h2 {
+    font-size: 29px;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .customer-info {
+    align-items: center;
+  }
+
+  .testimonial-features {
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: left;
+  }
+
+  .quote-mark {
+    font-size: 65px;
+  }
+}
+
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 450px) {
+
+  .testimonial-features {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-content h2 {
+    font-size: 27px;
+  }
+}
+
+/* =====================================
+   INVENTORY INSIGHTS
+===================================== */
+
+.inventory-insights {
+  width: 82%;
+  max-width: 1200px;
+
+  margin: 100px auto 0;
+}
+
+
+/* =====================================
+   INSIGHTS HEADER
+===================================== */
+
+.insights-header {
+  text-align: center;
+
+  margin-bottom: 45px;
+}
+
+.insights-header h2 {
+  margin: 0;
+
+  color: #5A4032;
+
+  font-size: 36px;
+
+  line-height: 1.25;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+.insights-header p {
+  max-width: 650px;
+
+  margin: 14px auto 0;
+
+  color: #6B5A50;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================
+   CARDS CONTAINER
+===================================== */
+
+.insights-container {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 28px;
+}
+
+
+/* =====================================
+   INSIGHT CARD
+===================================== */
+
+.insight-card {
+  background: #FFFFFF;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  border: 1px solid #F0DED2;
+
+  box-shadow:
+    0 8px 25px rgba(90, 64, 50, 0.08);
+
+  transition: 0.3s;
+}
+
+.insight-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 14px 30px rgba(90, 64, 50, 0.12);
+}
+
+
+/* =====================================
+   CARD IMAGE
+===================================== */
+
+.insight-card > img {
+  width: 100%;
+
+  height: 210px;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* =====================================
+   CARD CONTENT
+===================================== */
+
+.insight-content {
+  padding: 25px 25px 27px;
+}
+
+
+/* =====================================
+   CARD TITLE
+===================================== */
+
+.insight-content h3 {
+  margin: 0 0 12px;
+
+  color: #5A4032;
+
+  font-size: 20px;
+
+  line-height: 1.35;
+
+  font-weight: 700;
+}
+
+
+/* =====================================
+   CARD DESCRIPTION
+===================================== */
+
+.insight-content p {
+  margin: 0 0 20px;
+
+  color: #6B5A50;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* =====================================
+   READ MORE
+===================================== */
+
+.read-more-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #B58A1A;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.read-more-btn svg {
+  font-size: 12px;
+
+  transition: 0.2s;
+}
+
+.read-more-btn:hover svg {
+  transform: translateX(4px);
+}
+
+.read-more-btn:hover {
+  color: #8F6B12;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 900px) {
+
+  .inventory-insights {
+    width: 88%;
+  }
+
+  .insights-container {
+    gap: 20px;
+  }
+
+  .insights-header h2 {
+    font-size: 32px;
+  }
+
+  .insight-content {
+    padding: 22px;
+  }
+
+  .insight-content h3 {
+    font-size: 18px;
+  }
+
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 700px) {
+
+  .inventory-insights {
+    width: 85%;
+
+    margin-top: 70px;
+  }
+
+  .insights-header {
+    margin-bottom: 35px;
+  }
+
+  .insights-header h2 {
+    font-size: 28px;
+  }
+
+  .insights-header p {
+    font-size: 15px;
+  }
+
+  .insights-container {
+    grid-template-columns: 1fr;
+
+    max-width: 430px;
+
+    margin: 0 auto;
+
+    gap: 25px;
+  }
+
+  .insight-card > img {
+    height: 220px;
+  }
+
+}

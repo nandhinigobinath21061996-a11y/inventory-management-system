@@ -1,0 +1,558 @@
+/* =========================================================
+   PURCHASES PAGE
+========================================================= */
+
+.purchases-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fbfd;
+  color: #333;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.purchases-layout {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  background: #f8fbfd;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.purchases-main {
+  padding: 24px 30px 30px;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.purchases-page-header {
+  background: #ffffff;
+  border: 1px solid #d7dce0;
+  border-radius: 7px;
+
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+
+  box-sizing: border-box;
+}
+
+.purchases-page-header h1 {
+  margin: 0;
+  color: #30363b;
+  font-size: 23px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.purchases-page-header p {
+  margin: 5px 0 0;
+  color: #858d93;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   ADD PURCHASE BUTTON
+========================================================= */
+
+.add-purchase-btn {
+  border: none;
+  background: #2f3b4f;
+  color: #ffffff;
+
+  padding: 10px 17px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  transition: background 0.2s ease;
+}
+
+.add-purchase-btn:hover {
+  background: #44566c;
+}
+
+
+/* =========================================================
+   PURCHASE CARD
+========================================================= */
+
+.purchases-card {
+  background: #ffffff;
+
+  border: 1px solid #d7dce0;
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.purchases-card-header {
+  min-height: 58px;
+
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+
+  border-bottom: 1px solid #e5e8ea;
+
+  box-sizing: border-box;
+}
+
+.purchases-card-header h2 {
+  margin: 0;
+
+  color: #343b40;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.purchases-card-header span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #8a9298;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
+
+.purchases-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+
+/* =========================================================
+   PURCHASE TABLE
+========================================================= */
+
+.purchases-table {
+  width: 100%;
+  min-width: 850px;
+
+  border-collapse: collapse;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.purchases-table th {
+  background: #2f3b4f;
+
+  color: #ffffff;
+
+  text-align: left;
+
+  padding: 13px 14px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  border-bottom: 1px solid #dfe3e5;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.purchases-table td {
+  padding: 14px;
+
+  color: #596269;
+
+  font-size: 13px;
+
+  border-bottom: 1px solid #edf0f1;
+
+  vertical-align: middle;
+}
+
+.purchases-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.purchases-table tbody tr:hover {
+  background: #fafcfd;
+}
+
+.purchases-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   NUMBER
+========================================================= */
+
+.purchase-number {
+  width: 45px;
+
+  color: #92999f !important;
+  font-size: 12px !important;
+}
+
+
+/* =========================================================
+   PRODUCT WITH THUMBNAIL
+========================================================= */
+
+.purchase-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.purchase-product-image {
+  width: 40px;
+  height: 40px;
+
+  border-radius: 6px;
+
+  background: #f5f7f8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+}
+
+.purchase-product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.purchase-product-image svg {
+  color: #b7bec3;
+  font-size: 20px;
+}
+
+.purchase-product-info {
+  min-width: 0;
+}
+
+.purchase-product-info strong {
+  display: block;
+
+  color: #343b40;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.purchase-product-info span {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #899197;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  max-width: 160px;
+}
+
+
+/* =========================================================
+   SUPPLIER
+========================================================= */
+
+.purchases-table td:nth-child(3) {
+  color: #4f585e;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   QUANTITY
+========================================================= */
+
+.purchase-quantity {
+  color: #18a673 !important;
+
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   PURCHASE TOTAL
+========================================================= */
+
+.purchase-total {
+  color: #1685bd !important;
+
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-purchases {
+  text-align: center !important;
+
+  padding: 55px 20px !important;
+
+  color: #90989e !important;
+
+  font-size: 14px !important;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+
+  z-index: 9999;
+}
+
+.modal {
+  width: 100%;
+  max-width: 520px;
+
+  max-height: calc(100vh - 40px);
+
+  background: #ffffff;
+
+  border-radius: 8px;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.20);
+
+  scrollbar-width: thin;
+}
+
+.modal h2 {
+  margin: 0 0 18px;
+
+  color: #2f3b4f;
+
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.modal input,
+.modal select,
+.modal textarea {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  border: 1px solid #d7dde1;
+  border-radius: 6px;
+
+  outline: none;
+
+  background: #ffffff;
+  color: #333;
+
+  font-size: 14px;
+
+  box-sizing: border-box;
+}
+
+.modal input,
+.modal select {
+  height: 43px;
+}
+
+.modal textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.modal input:focus,
+.modal select:focus,
+.modal textarea:focus {
+  border-color: #2f3b4f;
+}
+
+
+/* =========================================================
+   MODAL BUTTONS
+========================================================= */
+
+.modal-buttons {
+  display: flex;
+
+  gap: 10px;
+
+  padding-top: 8px;
+
+  position: sticky;
+  bottom: 0;
+
+  background: #ffffff;
+}
+
+.modal-buttons button {
+  flex: 1;
+
+  height: 42px;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-buttons button[type="submit"] {
+  background: #2f3b4f;
+  color: #ffffff;
+}
+
+.modal-buttons button[type="submit"]:hover {
+  background: #44566c;
+}
+
+.modal-buttons button[type="button"] {
+  background: #e9ecef;
+  color: #42484d;
+}
+
+.modal-buttons button[type="button"]:hover {
+  background: #dfe3e6;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 950px) {
+  .purchases-layout {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .purchases-main {
+    padding: 18px;
+  }
+
+  .purchases-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .add-purchase-btn {
+    width: 100%;
+  }
+
+  .purchases-card-header {
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .purchases-main {
+    padding: 14px;
+  }
+
+  .purchases-page-header h1 {
+    font-size: 21px;
+  }
+
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal {
+    max-height: calc(100vh - 20px);
+    padding: 18px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+  }
+}

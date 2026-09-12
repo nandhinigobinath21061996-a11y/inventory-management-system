@@ -1,0 +1,80 @@
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: #2F3B4F;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.logo {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.user-info {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.user-info p {
+    margin-top: 5px;
+    color: #d1d5db;
+    font-size: 14px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu a,
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    padding: 12px 15px;
+    margin-bottom: 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #fff;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: 0.3s;
+    box-sizing: border-box;
+
+    font-size: 16px;
+}
+
+.menu svg,
+.logout-btn svg {
+    font-size: 18px;
+    min-width: 20px;
+}
+
+.menu a:hover,
+.logout-btn:hover {
+    background: #44566C;
+}
+
+.menu a.active {
+    background: #44566C;
+    font-weight: 600;
+}
