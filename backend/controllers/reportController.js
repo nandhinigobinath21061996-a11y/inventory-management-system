@@ -21,7 +21,6 @@ const getDashboardStats = async (req, res) => {
     const totalSales =
       await Sale.countDocuments();
 
-
     // LOW STOCK
     const lowStock = await Product.find({
       quantity: { $lte: 5 },
@@ -29,18 +28,14 @@ const getDashboardStats = async (req, res) => {
       "name brand quantity image"
     );
 
-
     // RECENT SALES
-    // Include product image so Dashboard
-    // Top Selling Items can display it.
     const recentSales = await Sale.find()
       .populate(
-        "product",
+        "items.product",
         "name brand image"
       )
       .sort({ createdAt: -1 })
       .limit(5);
-
 
     res.status(200).json({
       totalProducts,
@@ -53,11 +48,14 @@ const getDashboardStats = async (req, res) => {
     });
 
   } catch (error) {
+    console.error(
+      "Dashboard Stats Error:",
+      error
+    );
 
     res.status(500).json({
       message: error.message,
     });
-
   }
 };
 
@@ -68,41 +66,32 @@ const getDashboardStats = async (req, res) => {
 
 const getSalesReport = async (req, res) => {
   try {
-
     const { from, to } = req.query;
 
     let filter = {};
 
-
     if (from && to) {
-
       filter.saleDate = {
         $gte: new Date(from),
         $lte: new Date(to),
       };
-
     }
-
 
     const sales = await Sale.find(filter)
       .populate(
-        "product",
-        "name brand image"
+        "items.product",
+        "name brand image size color"
       )
       .sort({
         saleDate: -1,
       });
 
-
-    const totalSalesAmount =
-      sales.reduce(
-        (total, sale) =>
-          total +
-          sale.quantity *
-            sale.sellingPrice,
-        0
-      );
-
+    // Calculate total sales amount
+    const totalSalesAmount = sales.reduce(
+      (total, sale) =>
+        total + Number(sale.totalAmount || 0),
+      0
+    );
 
     res.status(200).json({
       sales,
@@ -110,11 +99,14 @@ const getSalesReport = async (req, res) => {
     });
 
   } catch (error) {
+    console.error(
+      "Sales Report Error:",
+      error
+    );
 
     res.status(500).json({
       message: error.message,
     });
-
   }
 };
 
@@ -125,21 +117,16 @@ const getSalesReport = async (req, res) => {
 
 const getPurchaseReport = async (req, res) => {
   try {
-
     const { from, to } = req.query;
 
     let filter = {};
 
-
     if (from && to) {
-
       filter.purchaseDate = {
         $gte: new Date(from),
         $lte: new Date(to),
       };
-
     }
-
 
     const purchases =
       await Purchase.find(filter)
@@ -155,16 +142,14 @@ const getPurchaseReport = async (req, res) => {
           purchaseDate: -1,
         });
 
-
     const totalPurchaseAmount =
       purchases.reduce(
         (total, purchase) =>
           total +
-          purchase.quantity *
-            purchase.purchasePrice,
+          Number(purchase.quantity || 0) *
+          Number(purchase.purchasePrice || 0),
         0
       );
-
 
     res.status(200).json({
       purchases,
@@ -172,11 +157,14 @@ const getPurchaseReport = async (req, res) => {
     });
 
   } catch (error) {
+    console.error(
+      "Purchase Report Error:",
+      error
+    );
 
     res.status(500).json({
       message: error.message,
     });
-
   }
 };
 

@@ -76,27 +76,35 @@ const Dashboard = () => {
     }
   };
 
-  /* =====================================================
-     TOP SELLING PRODUCTS
-  ===================================================== */
+  // =====================================================
+  // TOP SELLING PRODUCTS
+  // =====================================================
 
   const topSellingProducts = Object.values(
     sales.reduce((acc, sale) => {
-      const productId =
-        sale.product?._id ||
-        sale.product?.name ||
-        "unknown";
-
-      if (!acc[productId]) {
-        acc[productId] = {
-          product: sale.product,
-          quantity: 0,
-        };
+      if (!sale.items || !Array.isArray(sale.items)) {
+        return acc;
       }
 
-      acc[productId].quantity += Number(
-        sale.quantity || 0
-      );
+      sale.items.forEach((item) => {
+        const product = item.product;
+
+        const productId =
+          product?._id ||
+          product?.name ||
+          "unknown";
+
+        if (!acc[productId]) {
+          acc[productId] = {
+            product: product,
+            quantity: 0,
+          };
+        }
+
+        acc[productId].quantity += Number(
+          item.quantity || 0
+        );
+      });
 
       return acc;
     }, {})
@@ -104,19 +112,20 @@ const Dashboard = () => {
     .sort((a, b) => b.quantity - a.quantity)
     .slice(0, 4);
 
-  /* =====================================================
-     LOW STOCK PRODUCTS
-  ===================================================== */
+  // =====================================================
+  // LOW STOCK PRODUCTS
+  // =====================================================
 
   const lowStockProducts = products
     .filter(
-      (product) => Number(product.quantity) <= 5
+      (product) =>
+        Number(product.quantity) <= 5
     )
     .slice(0, 5);
 
-  /* =====================================================
-     TOTAL STOCK
-  ===================================================== */
+  // =====================================================
+  // TOTAL STOCK
+  // =====================================================
 
   const totalStock = products.reduce(
     (total, product) =>
@@ -137,13 +146,12 @@ const Dashboard = () => {
 
         <main className="dashboard-main">
 
-          {/* =================================================
-             DASHBOARD HEADING
-          ================================================= */}
+          {/* ================= DASHBOARD HEADING ================= */}
 
           <div className="dashboard-overview-header">
 
             <div>
+
               <h1>
                 Inventory Overview
               </h1>
@@ -152,14 +160,13 @@ const Dashboard = () => {
                 Track your sales, purchases, stock and
                 inventory alerts at a glance.
               </p>
+
             </div>
 
           </div>
 
 
-          {/* =================================================
-             TOP SUMMARY
-          ================================================= */}
+          {/* ================= TOP SUMMARY ================= */}
 
           <section className="dashboard-summary">
 
@@ -263,13 +270,11 @@ const Dashboard = () => {
           </section>
 
 
-          {/* =================================================
-             MIDDLE SECTION
-          ================================================= */}
+          {/* ================= MIDDLE SECTION ================= */}
 
           <section className="middle-section">
 
-            {/* ================= PRODUCT DETAILS ================= */}
+            {/* PRODUCT DETAILS */}
 
             <div className="dashboard-card">
 
@@ -339,7 +344,7 @@ const Dashboard = () => {
             </div>
 
 
-            {/* ================= TOP SELLING PRODUCTS ================= */}
+            {/* TOP SELLING PRODUCTS */}
 
             <div className="dashboard-card top-selling-card">
 
@@ -370,6 +375,7 @@ const Dashboard = () => {
                         item.product;
 
                       return (
+
                         <div
                           className="dashboard-top-selling-row"
                           key={
@@ -425,7 +431,9 @@ const Dashboard = () => {
                           </strong>
 
                         </div>
+
                       );
+
                     }
                   )
 
@@ -444,13 +452,11 @@ const Dashboard = () => {
           </section>
 
 
-          {/* =================================================
-             BOTTOM - RECENT ACTIVITY
-          ================================================= */}
+          {/* ================= RECENT ACTIVITY ================= */}
 
           <section className="recent-dashboard-grid">
 
-            {/* ================= RECENT SALES ================= */}
+            {/* RECENT SALES */}
 
             <div className="dashboard-card">
 
@@ -476,48 +482,71 @@ const Dashboard = () => {
 
                   sales
                     .slice(0, 5)
-                    .map((sale) => (
+                    .map((sale) => {
 
-                      <div
-                        className="recent-dashboard-row"
-                        key={sale._id}
-                      >
+                      const itemNames =
+                        sale.items
+                          ?.map(
+                            (item) =>
+                              item.product?.name ||
+                              "Product"
+                          )
+                          .join(", ");
 
-                        <div>
+                      const totalQuantity =
+                        sale.items?.reduce(
+                          (total, item) =>
+                            total +
+                            Number(
+                              item.quantity || 0
+                            ),
+                          0
+                        ) || 0;
 
-                          <strong>
-                            {sale.product?.name ||
-                              "Product"}
-                          </strong>
+                      return (
 
-                          <span>
-                            {sale.customerName ||
-                              "Walk-in Customer"}
-                          </span>
+                        <div
+                          className="recent-dashboard-row"
+                          key={sale._id}
+                        >
+
+                          <div>
+
+                            <strong>
+                              {itemNames ||
+                                "Product"}
+                            </strong>
+
+                            <span>
+                              {sale.customerName ||
+                                "Walk-in Customer"}
+                            </span>
+
+                          </div>
+
+
+                          <div className="recent-dashboard-right">
+
+                            <strong className="recent-sale-amount">
+                              ₹
+                              {Number(
+                                sale.totalAmount || 0
+                              ).toLocaleString(
+                                "en-IN"
+                              )}
+                            </strong>
+
+                            <span>
+                              {totalQuantity} pcs
+                            </span>
+
+                          </div>
 
                         </div>
 
+                      );
 
-                        <div className="recent-dashboard-right">
-
-                          <strong className="recent-sale-amount">
-                            ₹
-                            {Number(
-                              sale.totalAmount || 0
-                            ).toLocaleString(
-                              "en-IN"
-                            )}
-                          </strong>
-
-                          <span>
-                            {sale.quantity} pcs
-                          </span>
-
-                        </div>
-
-                      </div>
-
-                    ))
+                    })
 
                 ) : (
 
@@ -532,7 +561,7 @@ const Dashboard = () => {
             </div>
 
 
-            {/* ================= RECENT PURCHASES ================= */}
+            {/* RECENT PURCHASES */}
 
             <div className="dashboard-card">
 
@@ -616,9 +645,7 @@ const Dashboard = () => {
           </section>
 
 
-          {/* =================================================
-             STOCK STATUS
-          ================================================= */}
+          {/* ================= STOCK STATUS ================= */}
 
           <section className="low-stock-section">
 
