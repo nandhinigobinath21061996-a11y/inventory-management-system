@@ -10,7 +10,7 @@ const AddProductModal = ({ closeModal, refreshProducts }) => {
     name: "",
     brand: "",
     category: "Men",
-    size: "M",
+    size: "M", 
     color: "",
     quantity: "",
     purchasePrice: "",

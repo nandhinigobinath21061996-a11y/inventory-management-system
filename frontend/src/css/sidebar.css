@@ -9,6 +9,7 @@
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
+    z-index: 1000;
 }
 
 .logo {
@@ -45,7 +46,6 @@
     align-items: center;
     gap: 12px;
     width: 100%;
-
     padding: 12px 15px;
     margin-bottom: 10px;
 
@@ -77,4 +77,119 @@
 .menu a.active {
     background: #44566C;
     font-weight: 600;
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (max-width: 950px) {
+
+    .sidebar {
+        width: 220px;
+        padding: 15px;
+    }
+
+    .logo {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .user-info {
+        margin-bottom: 30px;
+    }
+
+    .user-info h3 {
+        font-size: 18px;
+    }
+
+    .user-info p {
+        font-size: 13px;
+    }
+
+    .menu a,
+    .logout-btn {
+        padding: 10px 12px;
+        font-size: 14px;
+        gap: 9px;
+    }
+
+    .menu svg,
+    .logout-btn svg {
+        font-size: 16px;
+    }
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        width: 200px;
+        padding: 12px;
+    }
+
+    .logo {
+        font-size: 21px;
+        margin-bottom: 20px;
+    }
+
+    .user-info {
+        margin-bottom: 22px;
+    }
+
+    .user-info h3 {
+        font-size: 16px;
+    }
+
+    .user-info p {
+        font-size: 12px;
+    }
+
+    .menu a,
+    .logout-btn {
+        padding: 9px 10px;
+        font-size: 13px;
+        gap: 8px;
+    }
+
+    .menu svg,
+    .logout-btn svg {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================
+   SMALL MOBILE
+   ========================= */
+
+@media (max-width: 480px) {
+
+    .sidebar {
+        width: 180px;
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .user-info h3 {
+        font-size: 15px;
+    }
+
+    .user-info p {
+        font-size: 11px;
+    }
+
+    .menu a,
+    .logout-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
 }
