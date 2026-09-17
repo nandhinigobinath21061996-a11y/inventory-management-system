@@ -8,18 +8,19 @@ const AddSaleModal = ({ closeModal, refreshSales }) => {
   const [selectedName, setSelectedName] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const [quantity, setQuantity] = useState("");
+
+  const [cartItems, setCartItems] = useState([]);
+
   const [formData, setFormData] = useState({
-    product: "",
     customerName: "",
-    quantity: "",
-    sellingPrice: "",
     saleDate: "",
     notes: "",
   });
 
+  // Fetch products
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -29,86 +30,149 @@ const AddSaleModal = ({ closeModal, refreshSales }) => {
       const { data } = await API.get("/products");
       setProducts(data);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching products:", error);
     }
   };
 
-  // Unique Product Names
-  const uniqueProducts = [...new Set(products.map((p) => p.name))];
+  // Product names
+  const uniqueProducts = [
+    ...new Set(products.map((product) => product.name)),
+  ];
 
-  // Sizes based on selected product
+  // Sizes
   const availableSizes = [
     ...new Set(
       products
-        .filter((p) => p.name === selectedName)
-        .map((p) => p.size)
+        .filter((product) => product.name === selectedName)
+        .map((product) => product.size)
     ),
   ];
 
-  // Colors based on selected product + size
+  // Colors
   const availableColors = [
     ...new Set(
       products
         .filter(
-          (p) =>
-            p.name === selectedName &&
-            p.size === selectedSize
+          (product) =>
+            product.name === selectedName &&
+            product.size === selectedSize
         )
-        .map((p) => p.color)
+        .map((product) => product.color)
     ),
   ];
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // Add selected product
+  const addProduct = () => {
+    if (!selectedProduct) {
+      alert("Please select a product");
+      return;
+    }
 
-  const handleColorChange = (color) => {
-    setSelectedColor(color);
+    const qty = Number(quantity);
 
-    const product = products.find(
-      (p) =>
-        p.name === selectedName &&
-        p.size === selectedSize &&
-        p.color === color
+    if (!qty || qty < 1) {
+      alert("Please enter a valid quantity");
+      return;
+    }
+
+    if (qty > selectedProduct.quantity) {
+      alert("Insufficient stock");
+      return;
+    }
+
+    // Prevent same product twice
+    const alreadyAdded = cartItems.find(
+      (item) => item.product === selectedProduct._id
     );
 
-    if (!product) return;
+    if (alreadyAdded) {
+      alert("Product already added");
+      return;
+    }
 
-    setSelectedProduct(product);
+    const item = {
+      product: selectedProduct._id,
+      name: selectedProduct.name,
+      size: selectedProduct.size,
+      color: selectedProduct.color,
+      quantity: qty,
+      sellingPrice: Number(selectedProduct.sellingPrice),
+      totalAmount:
+        qty * Number(selectedProduct.sellingPrice),
+    };
 
-    setFormData((prev) => ({
-      ...prev,
-      product: product._id,
-      sellingPrice: product.sellingPrice,
-    }));
+    setCartItems([...cartItems, item]);
+
+    // Reset product selection
+    setSelectedName("");
+    setSelectedSize("");
+    setSelectedColor("");
+    setSelectedProduct(null);
+    setQuantity("");
   };
 
+  // Remove product
+  const removeProduct = (productId) => {
+    setCartItems(
+      cartItems.filter(
+        (item) => item.product !== productId
+      )
+    );
+  };
+
+  // Grand total
+  const grandTotal = cartItems.reduce(
+    (total, item) => total + item.totalAmount,
+    0
+  );
+
+  // Save sale
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (cartItems.length === 0) {
+      alert("Please add at least one product");
+      return;
+    }
+
     try {
-      await API.post("/sales", formData);
+      const saleData = {
+        items: cartItems.map((item) => ({
+          product: item.product,
+          quantity: item.quantity,
+          sellingPrice: item.sellingPrice,
+        })),
+
+        customerName: formData.customerName,
+        saleDate: formData.saleDate,
+        notes: formData.notes,
+      };
+
+      await API.post("/sales", saleData);
 
       alert("Sale added successfully");
 
       refreshSales();
       closeModal();
     } catch (error) {
-      console.error(error);
-      alert(error.response?.data?.message || "Failed to add sale");
+      console.error("Error adding sale:", error);
+
+      alert(
+        error.response?.data?.message ||
+          "Failed to add sale"
+      );
     }
   };
-    return (
+
+  return (
     <div className="modal-overlay">
       <div className="modal">
+
         <h2>Add Sale</h2>
 
         <form onSubmit={handleSubmit}>
 
-          {/* Product */}
+          {/* PRODUCT */}
           <select
             value={selectedName}
             onChange={(e) => {
@@ -116,14 +180,7 @@ const AddSaleModal = ({ closeModal, refreshSales }) => {
               setSelectedSize("");
               setSelectedColor("");
               setSelectedProduct(null);
-
-              setFormData((prev) => ({
-                ...prev,
-                product: "",
-                sellingPrice: "",
-              }));
             }}
-            required
           >
             <option value="">Select Product</option>
 
@@ -134,22 +191,16 @@ const AddSaleModal = ({ closeModal, refreshSales }) => {
             ))}
           </select>
 
-          {/* Size */}
+
+          {/* SIZE */}
           <select
             value={selectedSize}
             onChange={(e) => {
               setSelectedSize(e.target.value);
               setSelectedColor("");
               setSelectedProduct(null);
-
-              setFormData((prev) => ({
-                ...prev,
-                product: "",
-                sellingPrice: "",
-              }));
             }}
             disabled={!selectedName}
-            required
           >
             <option value="">Select Size</option>
 
@@ -160,12 +211,25 @@ const AddSaleModal = ({ closeModal, refreshSales }) => {
             ))}
           </select>
 
-          {/* Color */}
+
+          {/* COLOR */}
           <select
             value={selectedColor}
-            onChange={(e) => handleColorChange(e.target.value)}
+            onChange={(e) => {
+              const color = e.target.value;
+
+              setSelectedColor(color);
+
+              const product = products.find(
+                (product) =>
+                  product.name === selectedName &&
+                  product.size === selectedSize &&
+                  product.color === color
+              );
+
+              setSelectedProduct(product || null);
+            }}
             disabled={!selectedSize}
-            required
           >
             <option value="">Select Color</option>
 
@@ -176,63 +240,223 @@ const AddSaleModal = ({ closeModal, refreshSales }) => {
             ))}
           </select>
 
+
+          {/* PRODUCT DETAILS */}
           {selectedProduct && (
             <div className="product-details">
+
               <div className="detail-item">
                 <span>Brand</span>
-                <strong>{selectedProduct.brand}</strong>
+                <strong>
+                  {selectedProduct.brand}
+                </strong>
               </div>
 
               <div className="detail-item">
                 <span>Category</span>
-                <strong>{selectedProduct.category}</strong>
+                <strong>
+                  {selectedProduct.category}
+                </strong>
               </div>
 
               <div className="detail-item">
                 <span>Available Stock</span>
-                <strong>{selectedProduct.quantity}</strong>
+                <strong>
+                  {selectedProduct.quantity}
+                </strong>
               </div>
 
               <div className="detail-item">
                 <span>Selling Price</span>
-                <strong>₹{selectedProduct.sellingPrice}</strong>
+                <strong>
+                  ₹{selectedProduct.sellingPrice}
+                </strong>
               </div>
+
             </div>
           )}
 
+
+          {/* QUANTITY */}
+          <input
+            type="number"
+            name="quantity"
+            placeholder="Quantity"
+            min="1"
+            value={quantity}
+            onChange={(e) =>
+              setQuantity(e.target.value)
+            }
+          />
+
+
+          {/* ADD PRODUCT */}
+          <button
+            type="button"
+            onClick={addProduct}
+            style={{
+              background: "#1685bd",
+              color: "#fff",
+              border: "none",
+              padding: "10px",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
+          >
+            + Add Product
+          </button>
+
+
+          {/* SELECTED PRODUCTS */}
+          {cartItems.length > 0 && (
+            <div
+              style={{
+                marginTop: "15px",
+                borderTop: "1px solid #ddd",
+                paddingTop: "10px",
+              }}
+            >
+
+              <h3>Selected Products</h3>
+
+              {cartItems.map((item) => (
+                <div
+                  key={item.product}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "8px 0",
+                    borderBottom:
+                      "1px solid #eee",
+                  }}
+                >
+
+                  <div>
+
+                    <strong>
+                      {item.name}
+                    </strong>
+
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: "#777",
+                      }}
+                    >
+                      {item.size} • {item.color}
+                    </div>
+
+                    <div>
+                      {item.quantity} × ₹
+                      {item.sellingPrice}
+                    </div>
+
+                  </div>
+
+
+                  <div>
+
+                    <strong>
+                      ₹
+                      {item.totalAmount.toLocaleString(
+                        "en-IN"
+                      )}
+                    </strong>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        removeProduct(item.product)
+                      }
+                      style={{
+                        marginLeft: "10px",
+                        border: "none",
+                        background: "#df515c",
+                        color: "#fff",
+                        borderRadius: "4px",
+                        padding: "4px 7px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Remove
+                    </button>
+
+                  </div>
+
+                </div>
+              ))}
+
+
+              {/* TOTAL */}
+              <div
+                style={{
+                  textAlign: "right",
+                  marginTop: "12px",
+                  fontSize: "18px",
+                }}
+              >
+                <strong>
+                  Total: ₹
+                  {grandTotal.toLocaleString(
+                    "en-IN"
+                  )}
+                </strong>
+              </div>
+
+            </div>
+          )}
+
+
+          {/* CUSTOMER */}
           <input
             type="text"
             name="customerName"
             placeholder="Customer Name"
             value={formData.customerName}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                customerName: e.target.value,
+              })
+            }
           />
 
-          <input
-            type="number"
-            name="quantity"
-            placeholder="Quantity"
-            value={formData.quantity}
-            onChange={handleChange}
-            required
-          />
 
+          {/* DATE */}
           <input
             type="date"
             name="saleDate"
             value={formData.saleDate}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                saleDate: e.target.value,
+              })
+            }
           />
 
+
+          {/* NOTES */}
           <textarea
             name="notes"
             placeholder="Notes"
             value={formData.notes}
-            onChange={handleChange}
+            onChange={(e) =>
+              setFormData({
+                ...formData,
+                notes: e.target.value,
+              })
+            }
           />
 
+
+          {/* BUTTONS */}
           <div className="modal-buttons">
-            <button type="submit">Save</button>
+
+            <button type="submit">
+              Save
+            </button>
 
             <button
               type="button"
@@ -240,8 +464,11 @@ const AddSaleModal = ({ closeModal, refreshSales }) => {
             >
               Cancel
             </button>
+
           </div>
+
         </form>
+
       </div>
     </div>
   );

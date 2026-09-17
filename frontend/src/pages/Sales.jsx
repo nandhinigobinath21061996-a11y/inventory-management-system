@@ -3,7 +3,6 @@ import Sidebar from "../components/Sidebar";
 import API from "../api/productApi";
 import AddSaleModal from "../components/AddSaleModal";
 import "../css/sales.css";
-
 import { FaBoxOpen } from "react-icons/fa";
 
 const Sales = () => {
@@ -17,119 +16,61 @@ const Sales = () => {
   const fetchSales = async () => {
     try {
       const { data } = await API.get("/sales");
-
       setSales(data);
     } catch (error) {
-      console.error(
-        "Error fetching sales:",
-        error
-      );
+      console.error("Error fetching sales:", error);
     }
   };
 
   return (
     <div className="sales-page">
-
-      {/* ================= SIDEBAR ================= */}
-
       <Sidebar />
 
-
-      {/* ================= MAIN ================= */}
-
       <div className="sales-layout">
-
         <main className="sales-main">
 
-          {/* ================= PAGE HEADER ================= */}
-
+          {/* HEADER */}
           <div className="sales-page-header">
-
             <div>
-
-              <h1>
-                Sales
-              </h1>
-
+              <h1>Sales</h1>
               <p>
-                {sales.length} sales •
-                Manage your product sales
+                {sales.length} sales • Manage your product sales
               </p>
-
             </div>
-
 
             <button
               className="add-sale-btn"
-              onClick={() =>
-                setShowModal(true)
-              }
+              onClick={() => setShowModal(true)}
             >
               + Add Sale
             </button>
-
           </div>
 
 
-          {/* ================= SALES TABLE ================= */}
-
+          {/* SALES CARD */}
           <div className="sales-card">
 
             <div className="sales-card-header">
-
               <div>
-
-                <h2>
-                  Sales History
-                </h2>
-
-                <span>
-                  Recent product sales
-                </span>
-
+                <h2>Sales History</h2>
+                <span>Recent product sales</span>
               </div>
-
             </div>
 
 
+            {/* TABLE */}
             <div className="sales-table-wrapper">
 
               <table className="sales-table">
 
                 <thead>
-
                   <tr>
-
-                    <th>
-                      #
-                    </th>
-
-                    <th>
-                      Product
-                    </th>
-
-                    <th>
-                      Customer
-                    </th>
-
-                    <th>
-                      Quantity
-                    </th>
-
-                    <th>
-                      Selling Price
-                    </th>
-
-                    <th>
-                      Total Amount
-                    </th>
-
-                    <th>
-                      Sale Date
-                    </th>
-
+                    <th>#</th>
+                    <th>Products</th>
+                    <th>Customer</th>
+                    <th>Total Amount</th>
+                    <th>Sale Date</th>
                   </tr>
-
                 </thead>
 
 
@@ -137,132 +78,117 @@ const Sales = () => {
 
                   {sales.length > 0 ? (
 
-                    sales.map(
-                      (sale, index) => {
+                    sales.map((sale, index) => (
 
-                        const product =
-                          sale.product;
+                      <tr key={sale._id}>
 
-                        return (
-                          <tr
-                            key={sale._id}
-                          >
-
-                            {/* NUMBER */}
-
-                            <td className="sale-number">
-                              {index + 1}
-                            </td>
+                        {/* NUMBER */}
+                        <td className="sale-number">
+                          {index + 1}
+                        </td>
 
 
-                            {/* PRODUCT */}
+                        {/* PRODUCTS */}
+                        <td>
 
-                            <td>
+                          <div className="sale-products-list">
 
-                              <div className="sale-product">
+                            {sale.items?.map((item) => {
 
-                                <div className="sale-product-image">
+                              const product = item.product;
 
-                                  {product?.image ? (
+                              return (
 
-                                    <img
-                                      src={
-                                        product.image
-                                      }
-                                      alt={
-                                        product.name ||
-                                        "Product"
-                                      }
-                                    />
+                                <div
+                                  key={item.product?._id}
+                                  className="sale-product"
+                                >
 
-                                  ) : (
+                                  <div className="sale-product-image">
 
-                                    <FaBoxOpen />
+                                    {product?.image ? (
 
-                                  )}
+                                      <img
+                                        src={product.image}
+                                        alt={
+                                          product.name ||
+                                          "Product"
+                                        }
+                                      />
+
+                                    ) : (
+
+                                      <FaBoxOpen />
+
+                                    )}
+
+                                  </div>
+
+
+                                  <div className="sale-product-info">
+
+                                    <strong>
+                                      {product?.name || "N/A"}
+                                    </strong>
+
+                                    <span>
+                                      {product?.brand || "No Brand"}
+                                    </span>
+
+                                    <small>
+                                      {item.quantity} × ₹
+                                      {Number(
+                                        item.sellingPrice
+                                      ).toLocaleString("en-IN")}
+                                    </small>
+
+                                  </div>
 
                                 </div>
 
+                              );
+                            })}
 
-                                <div className="sale-product-info">
+                          </div>
 
-                                  <strong>
-                                    {product?.name ||
-                                      "N/A"}
-                                  </strong>
-
-                                  <span>
-                                    {product?.brand ||
-                                      "No Brand"}
-                                  </span>
-
-                                </div>
-
-                              </div>
-
-                            </td>
+                        </td>
 
 
-                            {/* CUSTOMER */}
-
-                            <td>
-                              {sale.customerName ||
-                                "Walk-in Customer"}
-                            </td>
-
-
-                            {/* QUANTITY */}
-
-                            <td className="sale-quantity">
-                              {sale.quantity}
-                            </td>
+                        {/* CUSTOMER */}
+                        <td>
+                          {sale.customerName ||
+                            "Walk-in Customer"}
+                        </td>
 
 
-                            {/* SELLING PRICE */}
-
-                            <td>
-                              ₹
-                              {Number(
-                                sale.sellingPrice
-                              ).toLocaleString(
-                                "en-IN"
-                              )}
-                            </td>
+                        {/* TOTAL */}
+                        <td className="sale-total">
+                          ₹
+                          {Number(
+                            sale.totalAmount
+                          ).toLocaleString("en-IN")}
+                        </td>
 
 
-                            {/* TOTAL */}
+                        {/* DATE */}
+                        <td>
+                          {sale.saleDate
+                            ? new Date(
+                                sale.saleDate
+                              ).toLocaleDateString()
+                            : "N/A"}
+                        </td>
 
-                            <td className="sale-total">
-                              ₹
-                              {Number(
-                                sale.totalAmount
-                              ).toLocaleString(
-                                "en-IN"
-                              )}
-                            </td>
+                      </tr>
 
-
-                            {/* DATE */}
-
-                            <td>
-                              {sale.saleDate
-                                ? new Date(
-                                    sale.saleDate
-                                  ).toLocaleDateString()
-                                : "N/A"}
-                            </td>
-
-                          </tr>
-                        );
-                      }
-                    )
+                    ))
 
                   ) : (
 
                     <tr>
 
                       <td
-                        colSpan="7"
+                        colSpan="5"
                         className="empty-sales"
                       >
                         No sales found
@@ -281,7 +207,7 @@ const Sales = () => {
           </div>
 
 
-          {/* ================= ADD SALE MODAL ================= */}
+          {/* ADD SALE MODAL */}
 
           {showModal && (
 
@@ -289,17 +215,13 @@ const Sales = () => {
               closeModal={() =>
                 setShowModal(false)
               }
-              refreshSales={
-                fetchSales
-              }
+              refreshSales={fetchSales}
             />
 
           )}
 
         </main>
-
       </div>
-
     </div>
   );
 };
